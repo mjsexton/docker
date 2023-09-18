@@ -4,18 +4,9 @@ FROM node:18
 #Image
 #Container
 
-WORKDIR /chatbot-backend-python
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY ./ /app
+CMD ["npm", "start"]
 
-COPY requirements.txt .
-
-RUN pip install -r ./requirements.txt
-
-COPY ./chatbot-backend-python ./chatbot-backend-python
-
-CMD ["python3", "./chatbot-backend-python/test.py"]
-
-ADD  /home/msexton/git/chatbot-backend-python/test.py /
-
-#RUN pip install -r ./requirements.txt
-
-CMD ["/bin/python", "/test.py"]
